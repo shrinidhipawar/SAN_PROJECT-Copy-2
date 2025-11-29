@@ -1,3 +1,7 @@
 # Ignore API keys
 dashboard/openai_key.txt
-dashboard/openai_key.txt
+gemini_key.txt
+
+# Python
+__pycache__/
+*.pyc

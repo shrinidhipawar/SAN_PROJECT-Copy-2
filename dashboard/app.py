@@ -28,7 +28,10 @@ def main():
 
     # Load processed data
     try:
-        df = load_data("data/processed_data.csv")
+        import os
+        base_dir = os.path.dirname(__file__)
+        data_path = os.path.join(base_dir, "data", "processed_data.csv")
+        df = load_data(data_path)
     except Exception as e:
         st.error(f"Could not load data: {e}")
         return

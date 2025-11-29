@@ -1,12 +1,25 @@
-import openai
+import google.generativeai as genai
 import pandas as pd
+import os
 
 # Load API key
 def load_api_key():
-    with open("openai_key.txt", "r") as f:
-        return f.read().strip()
+    try:
+        # Check for gemini_key.txt
+        if os.path.exists("gemini_key.txt"):
+            with open("gemini_key.txt", "r") as f:
+                return f.read().strip()
+        # Fallback to openai_key.txt if user put it there by mistake, or just return None
+        elif os.path.exists("openai_key.txt"):
+             with open("openai_key.txt", "r") as f:
+                return f.read().strip()
+        return None
+    except Exception:
+        return None
 
-openai.api_key = load_api_key()
+api_key = load_api_key()
+if api_key:
+    genai.configure(api_key=api_key)
 
 
 # -----------------------------------------------------------
@@ -79,13 +92,13 @@ def generate_llm_insights(df, scenario, enc):
     5. Whether improved SAN (FC) is better here
     """
 
-    # Call GPT-4 Mini
-    response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}]
-    )
+    # Call Gemini Pro
+    model = genai.GenerativeModel('gemini-flash-latest')
+    response = model.generate_content(prompt)
 
-    return response["choices"][0]["message"]["content"]
+    return response.text
+
+
 def run_llm(df, scenario, encryption):
     """
     Wrapper function so app.py can call a single LLM interface.
@@ -93,6 +106,9 @@ def run_llm(df, scenario, encryption):
     """
 
     try:
+        if not api_key:
+            return "⚠️ Missing API Key. Please create 'gemini_key.txt' with your Google Gemini API key."
+            
         insights = generate_llm_insights(df, scenario, encryption)
         return insights
 
