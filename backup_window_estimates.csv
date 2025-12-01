@@ -1,0 +1,13 @@
+Scenario,Encryption,Backup_Size_TB,Backup_Time_hours
+Traditional SAN,No Encryption,1.0,4.687787038039743
+Traditional SAN,No Encryption,5.0,23.43893519019871
+Traditional SAN,No Encryption,10.0,46.87787038039742
+Traditional SAN,AES-256,1.0,4.836676196330663
+Traditional SAN,AES-256,5.0,24.183380981653315
+Traditional SAN,AES-256,10.0,48.36676196330663
+Improved SAN (FC),No Encryption,1.0,0.9135478572531066
+Improved SAN (FC),No Encryption,5.0,4.567739286265533
+Improved SAN (FC),No Encryption,10.0,9.135478572531065
+Improved SAN (FC),AES-256,1.0,0.8911958846575597
+Improved SAN (FC),AES-256,5.0,4.455979423287799
+Improved SAN (FC),AES-256,10.0,8.911958846575597

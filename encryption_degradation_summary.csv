@@ -1,0 +1,3 @@
+Scenario,Throughput_Degradation_pct,Latency_Inflation_pct
+Traditional SAN,3.078336283993431,0.1950379172693666
+Improved SAN (FC),-2.508087501339349,31.21553981051499
