@@ -66,6 +66,50 @@ def main():
     prediction = predict_congestion(df, future_load)
     st.info(f"**Forecast:** {prediction}")
 
+    # Encryption Overhead Analysis
+    st.markdown("---")
+    st.header("🔐 Phase 6: Encryption Overhead Analysis")
+    st.markdown("Comprehensive analysis of AES-256 encryption impact on SAN performance")
+    
+    # Check if encryption analysis plots exist
+    import os
+    base_dir = os.path.dirname(__file__)
+    plots_dir = os.path.join(os.path.dirname(base_dir), "encryption_analysis_plots")
+    
+    if os.path.exists(plots_dir):
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("#### Throughput Comparison")
+            throughput_plot = os.path.join(plots_dir, "throughput_comparison.png")
+            if os.path.exists(throughput_plot):
+                st.image(throughput_plot, use_container_width=True)
+            
+            st.markdown("#### Backup Window Increase")
+            backup_plot = os.path.join(plots_dir, "backup_window_increase.png")
+            if os.path.exists(backup_plot):
+                st.image(backup_plot, use_container_width=True)
+        
+        with col2:
+            st.markdown("#### Latency Inflation")
+            latency_plot = os.path.join(plots_dir, "latency_inflation.png")
+            if os.path.exists(latency_plot):
+                st.image(latency_plot, use_container_width=True)
+            
+            st.markdown("#### Encryption Overhead Summary")
+            summary_plot = os.path.join(plots_dir, "encryption_overhead_summary.png")
+            if os.path.exists(summary_plot):
+                st.image(summary_plot, use_container_width=True)
+        
+        # Load and display summary metrics
+        metrics_file = os.path.join(os.path.dirname(base_dir), "encryption_degradation_summary.csv")
+        if os.path.exists(metrics_file):
+            st.markdown("#### 📊 Performance Impact Summary")
+            metrics_df = pd.read_csv(metrics_file)
+            st.dataframe(metrics_df, use_container_width=True)
+    else:
+        st.info("Run `encryption_analysis.py` to generate encryption overhead analysis plots.")
+
     # LLM Insights panel
     st.markdown("---")
     st.header("🤖 AI Insights & Recommendations")
