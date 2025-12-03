@@ -24,7 +24,7 @@ def load_data(path: str):
 def main():
     st.set_page_config(page_title="SAN Performance Dashboard", layout="wide")
 
-    st.title("SAN Performance & Backup Optimization Dashboard")
+    st.title("🔧 SAN Performance & Backup Optimization Dashboard")
     st.markdown("Interactive analytics for **Traditional SAN**, **FC SAN**, with/without AES-256 encryption.")
 
     # Load processed data

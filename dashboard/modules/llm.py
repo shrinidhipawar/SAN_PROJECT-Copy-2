@@ -84,12 +84,14 @@ def generate_llm_insights(df, scenario, enc):
     Scenario: {scenario}
     Encryption enabled: {enc}
 
-    Analyze and return:
-    1. Throughput stability summary
+    Analyze the data and return strictly 5 concise bullet points covering:
+    1. Throughput stability
     2. Latency behavior
     3. Impact of encryption
     4. Backup window recommendations
     5. Whether improved SAN (FC) is better here
+
+    Keep each bullet point short and direct.
     """
 
     # Call Gemini Pro
